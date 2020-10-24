@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
-import Context from "./context";
+import React from "react";
 import "./App.css";
+import { CardsProvider } from "./components/CardsContext";
 
 import Card1 from "./components/Card1";
 import Card2 from "./components/Card2";
@@ -9,20 +9,16 @@ import Card4 from "./components/Card4";
 import Card5 from "./components/Card5";
 import Card6 from "./components/Card6";
 
-// function showCard(id) {
-//   // console.log(cards.filter((element, i) => i === id));
-
-//   return
-// }
-
 function App() {
-  const [value, setValue] = useState(Context);
-  // const value = useContext(Context)
-
   return (
-    <Context.Provider value={{ value, setValue }}>
+    <CardsProvider>
+      <Card1 />
+      <Card2 />
+      <Card3 />
+      <Card4 />
       <Card5 />
-    </Context.Provider>
+      <Card6 />
+    </CardsProvider>
   );
 }
 
