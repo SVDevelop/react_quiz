@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import Card from "./Card";
 
-function Card4() {
+function Card4(props) {
   const [selection, setSelection] = useState("Ничего не выведет");
 
   const variants = [
@@ -35,19 +36,26 @@ function Card4() {
   );
 
   return (
-    <div className="quiz d-flex justify-content-center align-items-center">
+    <Card
+      title="Что выведет следующий код?"
+      progress={70}
+      toNext={props.toNext}
+      toPrev={props.toPrev}
+      nextAccess={props.nextAccess}
+    >
+      {/* <div className="quiz d-flex justify-content-center align-items-center">
       <div className="card main-card border border-secondary">
         <div className="card-header">
-          <h5 className="card-title">Что выведет следующий код?</h5>
+          <h5 className="card-title"></h5>
         </div>
         <div className="card-body">
           <img
             src="assets/code.jpg"
             alt=""
             style={{ display: "block", margin: "0 auto" }}
-          />
-          {ul}
-        </div>
+          /> */}
+      {ul}
+      {/* </div>
         <div className="card-footer d-flex align-items-center">
           <div className="flex-grow-1">
             <div className="progress">
@@ -67,7 +75,8 @@ function Card4() {
           </div>
         </div>
       </div>
-    </div>
+    </div> */}
+    </Card>
   );
 }
 

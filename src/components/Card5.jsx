@@ -1,14 +1,17 @@
-import React, { useState, useContext } from "react";
-import Context from "../context";
+import React, { useState } from "react";
+import FormInput from "./FormInput";
+
+const isValidEmail = (str) => {
+  const regexp = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
+  return regexp.test(str);
+};
+
+// const access = ![name, email].includes(null);
 
 function Card5() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [check, setCheck] = useState(false);
-  const option = useContext(Context);
-
-  // function toggleCheck(check) {
-  //   setCheck((check = !check));
-  // }
-  console.log(option);
 
   return (
     <div className="quiz d-flex justify-content-center align-items-center">
@@ -21,20 +24,26 @@ function Card5() {
         <div className="card-body">
           <div className="form-group">
             <label htmlFor="formGroupExampleInput">Имя:</label>
-            <input
+            <FormInput
               type="text"
               className="form-control"
               placeholder="Владимир"
+              onEnter={setName}
+              validations={[
+                (str) => str.length > 2 || "Имя должно быть от 2-х символов."
+              ]}
             />
           </div>
           <div className="form-group">
             <label htmlFor="formGroupExampleInput2">
               Адрес электронной почты:
             </label>
-            <input
-              type="text"
+            <FormInput
+              type="email"
               className="form-control"
               placeholder="@mail.ru"
+              onEnter={setEmail}
+              validations={[(str) => isValidEmail(str) || "Некоректный email"]}
             />
           </div>
           <div className="form-check">
