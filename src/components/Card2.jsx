@@ -1,10 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 
 import Card from "./Card";
 
 function Card2(props) {
   const { data, onSelect } = props;
-
+  const [checked, setChecked] = useState('')
   const variants = [
     "Russian language",
     "HTML + CSS",
@@ -31,9 +31,10 @@ function Card2(props) {
               <input
                 className="form-check-input"
                 type="radio"
-                name="quastion1"
-                checked={data === variant}
-                onChange={() => {}}
+                name={variant}
+                checked={checked === variant}
+                onClick={(e) => console.log(e.target)}
+                onChange={(e) => setChecked(e.target.name)}
               />
               <label className="form-check-label">{variant}</label>
             </div>

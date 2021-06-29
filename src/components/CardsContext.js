@@ -1,22 +1,18 @@
 import React, { useState, useContext } from "react";
 
-const CardsContext = React.createContext();
+export const CardsContext = React.createContext();
 
 const showCard = (card) => {
   // setCards((prev) => {
   // })
 };
 
-export const useCards = () => {
-  return useContext(CardsContext);
-};
-
 export const CardsProvider = ({ children }) => {
-  const prevCard = (curentCard) => {
-    curentCard;
+  const prevCard = (currentCard) => {
+
   };
-  const nextCard = (curentCard) => {
-    curentCard;
+  const nextCard = (currentCard) => {
+    cards.filter((card, id) => id - 1 === currentCard - 1)
   };
 
   const [cards, setCards] = useState({
@@ -31,6 +27,6 @@ export const CardsProvider = ({ children }) => {
   });
 
   return (
-    <CardsContext.Provider value={cards}>{children}</CardsContext.Provider>
+    <CardsContext.Provider value={{cards, prevCard, nextCard}}>{children}</CardsContext.Provider>
   );
 };

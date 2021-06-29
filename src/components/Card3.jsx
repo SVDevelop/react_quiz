@@ -3,15 +3,7 @@ import Card from "./Card";
 
 function Card3(props) {
   const { data, onSelect } = props;
-  const [selection, setSelection] = useState([
-    { "Sublime Text": false },
-    { "Notepad++": false },
-    { VSCode: false },
-    { Brackets: false },
-    { VIM: false },
-    { Блокнот: false },
-    { Atom: false }
-  ]);
+  const [selection, setSelection] = useState([]);
 
   const variants = [
     ["Sublime Text", "sublime"],
@@ -23,44 +15,43 @@ function Card3(props) {
     ["Atom", "atom"]
   ];
 
-  const toggleChange = (redoctor) => {
-    setSelection((prev) => {
-      prev.map((x) => {
-        if (x === redoctor) {
-          return [...prev, (x = !x)];
-        }
-      });
-    });
-  };
+  const toggleChange = (editor) => {
+    // selection.map(x => Object.keys(x)[0]===editor && console.log(x[editor]))
+    setSelection(prev => [...prev, editor])
 
-  const items = variants.map(([redoctor, icon], i) => (
+  };
+  console.log(selection)
+  const items = variants.map(([editor, icon], i) => (
     <div
       key={i}
       className="card-slectable d-flex flex-column justify-content-center"
       onClick={() => {
-        toggleChange;
-        console.log("fired");
+        // console.log(selection[i])
+        // toggleChange();
+        // console.log(selection)
+        // console.log(editor);
       }}
     >
-      <img src={"assets/" + icon + ".png"} alt="" />
+      <img src={"./assets/" + icon + ".png"} alt={""} />
       <div className="form-check">
         <input
           className="form-check-input"
           type="checkbox"
           defaultValue
+          name={editor}
           id={"defaultCheck" + i}
-          onClick={() => {
-            toggleChange;
+          onClick={(e) => {
+            // toggleChange();
           }}
-          // checked={selection.redoctor}
-          onChange={() => {}}
+          checked={ selection.includes(editor) }
+          onChange={()=>toggleChange(i)}
         />
         <label
           className="form-check-label text-center"
           htmlFor={"defaultCheck" + i}
           style={{ display: "block" }}
         >
-          {redoctor}
+          {editor}
         </label>
       </div>
     </div>
