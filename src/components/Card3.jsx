@@ -1,12 +1,28 @@
-import React, {useContext, useState} from "react";
+import React, { useState } from "react";
 import Card from "./Card";
-import {CardsContext} from "./CardsContext";
 
 function Card3(props) {
-  const { data, onSelect, toNext } = props;
+  const { data, onSelect, toNext, toPrev } = props;
+  const [selection, setSelection] = useState({
+    "sublime": ["Sublime Text", false],
+    "notepad": ["Notepad++", false],
+    "vscode": ["VSCode", false],
+    "brackets": ["Brackets", false],
+    "vim": ["VIM", false],
+    "notebook": ["Блокнот", false],
+    "atom": ["Atom", false]
+  });
 
-  const c = useContext(CardsContext)
-
+  const toggleChange = (e) => {
+    const {name} = e.target
+    setSelection(prev => {
+      const [title, value] = prev[name]
+      return {
+        ...prev,
+        [name]: [title, !value],
+      }
+    })
+  };
   const items = Object.entries(selection).map(([icon, value], i) => (
     <div
       key={i}
@@ -48,7 +64,7 @@ function Card3(props) {
       title="Каким редактором пользуются программисты?"
       progress={60}
       toNext={toNext}
-      toPrev={props.toPrev}
+      toPrev={toPrev}
       nextAccess={props.nextAccess}
     >
       {items}

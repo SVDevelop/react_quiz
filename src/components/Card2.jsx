@@ -12,6 +12,10 @@ function Card2(props) {
     "Никакого. На фронтенде пользуются браузером."
   ];
 
+  const onChange = (e) => {
+    setChecked(e.target.name)
+  }
+
   return (
     <Card
       title="Какой язык программирования используется на FrontEnd'е?"
@@ -25,18 +29,20 @@ function Card2(props) {
           <li
             key={variant}
             className="list-group-item"
-            onClick={() => onSelect(variant)}
+            onClick={onChange}
           >
             <div className="form-check">
-              <input
-                className="form-check-input"
-                type="radio"
-                name={variant}
-                checked={checked === variant}
-                onClick={(e) => console.log(e.target)}
-                onChange={(e) => setChecked(e.target.name)}
-              />
-              <label className="form-check-label">{variant}</label>
+              <label className="form-check-label">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  id={variant}
+                  name={variant}
+                  checked={checked === variant}
+                  onChange={onChange}
+                />
+                {variant}
+              </label>
             </div>
           </li>
         ))}

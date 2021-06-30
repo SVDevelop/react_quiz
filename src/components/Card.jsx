@@ -42,14 +42,14 @@ export default function Card(props) {
         <div className="btn-group">
           <button
             className="btn btn-danger float-right"
-            onClick={() => toPrev()}
+            onClick={toPrev}
           >
             Назад
           </button>
           <button
             className="btn btn-success float-right"
             disabled={!nextAccess}
-            onClick={() => toNext()}
+            onClick={toNext}
           >
             Далее
           </button>

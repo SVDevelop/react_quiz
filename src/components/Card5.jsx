@@ -28,10 +28,8 @@ function Card5() {
               type="text"
               className="form-control"
               placeholder="Владимир"
-              onEnter={setName}
-              validations={[
-                (str) => str.length > 2 || "Имя должно быть от 2-х символов."
-              ]}
+              onEnter={()=>isValidEmail(name)}
+              validations={[(str) => str.length > 2 || "Имя должно быть от 2-х символов." ]}
             />
           </div>
           <div className="form-group">
@@ -42,7 +40,7 @@ function Card5() {
               type="email"
               className="form-control"
               placeholder="@mail.ru"
-              onEnter={setEmail}
+              onEnter={()=>isValidEmail(email)}
               validations={[(str) => isValidEmail(str) || "Некоректный email"]}
             />
           </div>
@@ -54,8 +52,7 @@ function Card5() {
               name="exampleRadios"
               defaultValue="option1"
               checked={check}
-              onChange={() => {}}
-              onClick={() => setCheck(!check)}
+              onChange={() => setCheck(!check)}
             />
             <label className="form-check-label" htmlFor="defaultCheck">
               Согласен/согласна на обработку моих персональных данных.
@@ -71,7 +68,7 @@ function Card5() {
                 aria-valuenow={75}
                 aria-valuemin={0}
                 aria-valuemax={100}
-                style={{ width: "50%" }}
+                style={{ width: "90%" }}
               />
             </div>
           </div>
