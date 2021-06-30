@@ -1,30 +1,16 @@
-import React, { useState } from "react";
+import React, {useContext, useState} from "react";
 import Card from "./Card";
+import {CardsContext} from "./CardsContext";
 
 function Card3(props) {
-  const { data, onSelect } = props;
-  const [selection, setSelection] = useState([]);
+  const { data, onSelect, toNext } = props;
 
-  const variants = [
-    ["Sublime Text", "sublime"],
-    ["Notepad++", "notepad"],
-    ["VSCode", "vscode"],
-    ["Brackets", "brackets"],
-    ["VIM", "vim"],
-    ["Блокнот", "bloknot"],
-    ["Atom", "atom"]
-  ];
+  const c = useContext(CardsContext)
 
-  const toggleChange = (editor) => {
-    // selection.map(x => Object.keys(x)[0]===editor && console.log(x[editor]))
-    setSelection(prev => [...prev, editor])
-
-  };
-  console.log(selection)
-  const items = variants.map(([editor, icon], i) => (
+  const items = Object.entries(selection).map(([icon, value], i) => (
     <div
       key={i}
-      className="card-slectable d-flex flex-column justify-content-center"
+      className="card-slectable d-inline-block flex-column justify-content-center"
       onClick={() => {
         // console.log(selection[i])
         // toggleChange();
@@ -38,20 +24,20 @@ function Card3(props) {
           className="form-check-input"
           type="checkbox"
           defaultValue
-          name={editor}
+          name={icon}
           id={"defaultCheck" + i}
           onClick={(e) => {
             // toggleChange();
           }}
-          checked={ selection.includes(editor) }
-          onChange={()=>toggleChange(i)}
+          checked={ value[1] }
+          onChange={toggleChange}
         />
         <label
           className="form-check-label text-center"
           htmlFor={"defaultCheck" + i}
           style={{ display: "block" }}
         >
-          {editor}
+          {value[0]}
         </label>
       </div>
     </div>
@@ -61,7 +47,7 @@ function Card3(props) {
     <Card
       title="Каким редактором пользуются программисты?"
       progress={60}
-      toNext={props.toNext}
+      toNext={toNext}
       toPrev={props.toPrev}
       nextAccess={props.nextAccess}
     >

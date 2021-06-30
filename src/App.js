@@ -32,11 +32,11 @@ function App() {
       />
     );
   } else if (cardNumber === 3) {
-    card = <Card3 data={card3} onSelect={setCard3} />;
+    card = <Card3 data={card3} onSelect={setCard3} toNext={() => setCardNumber(4)} />;
   } else if (cardNumber === 4) {
-    card = <Card4 data={card4} onSelect={setCard4} />;
+    card = <Card4 data={card4} onSelect={setCard4} toNext={() => setCardNumber(5)} />;
   } else if (cardNumber === 5) {
-    card = <Card5 data={card5} onSelect={setCard5} />;
+    card = <Card5 data={card5} onSelect={setCard5} toNext={() => setCardNumber(6)} />;
   } else if (cardNumber === 6) {
     card = <Card6 />;
   }
