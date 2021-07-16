@@ -62,7 +62,8 @@ export default function Card(props) {
     <div className="quiz d-flex justify-content-center align-items-center">
       <div className="card main-card border border-secondary">
         {header}
-        <div className="card-body">{children}</div>
+        <div className="card-body">{children}
+        </div>
         {footer}
       </div>
     </div>

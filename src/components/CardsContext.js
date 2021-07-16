@@ -13,10 +13,10 @@ export const useCards = () => {
 
 export const CardsProvider = ({ children }) => {
   const prevCard = (curentCard) => {
-    curentCard;
+    // curentCard;
   };
   const nextCard = (curentCard) => {
-    curentCard;
+    // curentCard;
   };
 
   const [cards, setCards] = useState({

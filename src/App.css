@@ -21,6 +21,16 @@ body {
   display: block;
 }
 
+.card-body {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+}
+.list-group {
+  
+}
+
 .card-slectable {
   border: 1px solid gray;
   padding: 10px;

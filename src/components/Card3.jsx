@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import Card from "./Card";
+import Checkbox from "./Checkbox"
 
 function Card3(props) {
   const { data, onSelect } = props;
-  const [selection, setSelection] = useState([
-    { "Sublime Text": false },
-    { "Notepad++": false },
-    { VSCode: false },
-    { Brackets: false },
-    { VIM: false },
-    { Блокнот: false },
-    { Atom: false }
-  ]);
+  const [selection, setSelection] = useState({
+    'sublime': ["Sublime Text", false],
+    'notepad': ["Notepad++", false],
+    'vscode': ["VSCode", false],
+    'brackets': ["Brackets", false],
+    'vim': ["VIM", false],
+    'bloknot': ["Блокнот", false],
+    'atom': ["Atom", false] 
+    });
 
   const variants = [
     ["Sublime Text", "sublime"],
@@ -23,44 +24,33 @@ function Card3(props) {
     ["Atom", "atom"]
   ];
 
-  const toggleChange = (redoctor) => {
-    setSelection((prev) => {
-      prev.map((x) => {
-        if (x === redoctor) {
-          return [...prev, (x = !x)];
-        }
-      });
-    });
+  const toggleChange = (editor) => {
+    setSelection((prev) => ({
+      ...prev,
+      editor: [prev[editor][0], !prev[editor][1]]
+    }));
   };
 
-  const items = variants.map(([redoctor, icon], i) => (
+  const items = variants.map(([editor, icon], id) => (
     <div
-      key={i}
+      key={id}
       className="card-slectable d-flex flex-column justify-content-center"
-      onClick={() => {
-        toggleChange;
-        console.log("fired");
+      onClick={(e) => {
+
+        // toggleChange(e.target.name)
+        console.log(e.target);
       }}
     >
       <img src={"assets/" + icon + ".png"} alt="" />
       <div className="form-check">
-        <input
-          className="form-check-input"
-          type="checkbox"
-          defaultValue
-          id={"defaultCheck" + i}
-          onClick={() => {
-            toggleChange;
-          }}
-          // checked={selection.redoctor}
-          onChange={() => {}}
-        />
+        {/* checkbox */}
+        <Checkbox id={id} />
         <label
           className="form-check-label text-center"
-          htmlFor={"defaultCheck" + i}
+          htmlFor={id}
           style={{ display: "block" }}
         >
-          {redoctor}
+          {editor}
         </label>
       </div>
     </div>
